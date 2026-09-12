@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Simple One",
+    "model": "3.7 kWh",
+    "battery": 72,
+    "range": 118,
+    "speed": 45,
+    "odometer": 5420,
+    "status": "ONLINE",
+    "lastUpdated": "2026-09-07T10:30:00"
+  },
+  {
+    "id": 2,
+    "name": "Simple One",
+    "model": "3.7 kWh",
+    "battery": 38,
+    "range": 61,
+    "speed": 0,
+    "odometer": 12785,
+    "status": "OFFLINE",
+    "lastUpdated": "2026-09-06T18:12:00"
+  },
+  {
+    "id": 3,
+    "name": "Simple Dot One",
+    "model": "3.7 kWh",
+    "battery": 91,
+    "range": 149,
+    "speed": 32,
+    "odometer": 2380,
+    "status": "ONLINE",
+    "lastUpdated": "2026-09-07T09:48:00"
+  },
+  {
+    "id": 4,
+    "name": "Simple One",
+    "model": "3.7 kWh",
+    "battery": 16,
+    "range": 24,
+    "speed": 18,
+    "odometer": 19420,
+    "status": "ONLINE",
+    "lastUpdated": "2026-09-07T08:15:00"
+  },
+  {
+    "id": 5,
+    "name": "Simple One",
+    "model": "3.7 kWh",
+    "battery": 64,
+    "range": 101,
+    "speed": 0,
+    "odometer": 8650,
+    "status": "OFFLINE",
+    "lastUpdated": "2026-09-05T14:37:00"
+  }
+]
