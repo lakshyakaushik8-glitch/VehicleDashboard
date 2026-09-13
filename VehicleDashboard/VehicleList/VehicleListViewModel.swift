@@ -29,8 +29,6 @@ final class VehicleListViewModel: ObservableObject {
 
         isLoading = true
         webService.serviceManager(
-            urlStr: "https://mock.simpleenergy.app/vehicles",
-            parameter: [:],
             type: [Vehicle].self
         ) { [weak self] result in
             self?.vehicles = (try? result.get()) ?? []

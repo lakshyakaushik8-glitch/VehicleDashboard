@@ -8,46 +8,16 @@ import Foundation
 final class WebServiceManager {
     static let shared = WebServiceManager()
 
-    private init() {
-        URLProtocol.registerClass(LocalMockURLProtocol.self)
-    }
+    private init() {}
 
     func serviceManager<T: Codable>(
-        urlStr: String,
-        parameter: [String: Any],
         type: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
-        let header = ["Content-Type": "application/json"]
-
-        guard let strURL = URL(string: urlStr) else {
-            completion(.failure(URLError(.badURL)))
-            return
-        }
-
-        let jsonObj = try? JSONSerialization.data(withJSONObject: parameter, options: [])
-        var jsonRequest = URLRequest(
-            url: strURL,
-            cachePolicy: .useProtocolCachePolicy,
-            timeoutInterval: 10.0
-        )
-        jsonRequest.httpBody = jsonObj
-        jsonRequest.allHTTPHeaderFields = header
-        jsonRequest.httpMethod = "POST"
-
-        URLSession.shared.dataTask(with: jsonRequest) { data, response, error in
-            if let error {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let dataURL = Bundle.main.url(forResource: "vehicles", withExtension: "json") else {
                 DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-                return
-            }
-
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                  (200...299).contains(statusCode),
-                  let data else {
-                DispatchQueue.main.async {
-                    completion(.failure(URLError(.badServerResponse)))
+                    completion(.failure(URLError(.fileDoesNotExist)))
                 }
                 return
             }
@@ -71,6 +41,7 @@ final class WebServiceManager {
             }
 
             do {
+                let data = try Data(contentsOf: dataURL)
                 let result = try decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(result))
@@ -80,6 +51,6 @@ final class WebServiceManager {
                     completion(.failure(error))
                 }
             }
-        }.resume()
+        }
     }
 }

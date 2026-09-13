@@ -20,9 +20,7 @@ The project uses a small MVVM structure, with feature folders similar to KentSer
 ```text
 SwiftUI Views
     -> ViewModels
-    -> WebServiceManager.serviceManager(...)
-    -> URLSession
-    -> LocalMockURLProtocol
+    -> WebServiceManager.serviceManager(type:)
     -> vehicles.json
 ```
 

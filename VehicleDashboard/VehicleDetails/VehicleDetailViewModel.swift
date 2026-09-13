@@ -25,8 +25,6 @@ final class VehicleDetailViewModel: ObservableObject {
 
         isRefreshing = true
         webService.serviceManager(
-            urlStr: "https://mock.simpleenergy.app/vehicles",
-            parameter: [:],
             type: [Vehicle].self
         ) { [weak self] result in
             guard let self else { return }
